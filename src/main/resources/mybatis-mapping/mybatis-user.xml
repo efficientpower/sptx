@@ -22,6 +22,12 @@
         </selectKey>
         insert into user (name) values (#{name,jdbcType=VARCHAR})
     </insert>
+    <insert id="batchInsert" parameterType="org.wjh.domain.User">
+        insert into user (name) values
+        <foreach index="index" separator="," collection="list" item="item">
+            (#{item.name,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
     <update id="update" parameterType="org.wjh.domain.User">
         update user set name = #{name,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}
     </update>

@@ -1,12 +1,13 @@
 package org.wjh.service;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.wjh.dao.UserDao;
 import org.wjh.domain.User;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,6 +26,14 @@ public class UserServiceImpl implements UserService {
         User u = userDao.getById(id);
         u.setName(UUID.randomUUID().toString());
         userDao.update(u);
+    }
+
+    public void insert(User user) {
+        userDao.insert(user);
+    }
+
+    public void batchInsert(List<User> users) {
+        userDao.batchInsert(users);
     }
 
 }
